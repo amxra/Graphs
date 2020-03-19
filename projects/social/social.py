@@ -12,7 +12,7 @@ class Queue(): #add queue
             return self.queue.pop(0)
         else:
             return None
-            
+
     def size(self):
         return len(self.queue)
 
@@ -64,7 +64,28 @@ class SocialGraph:
 
         # Add users
 
+        for i in range(num_users):
+            self.add_user(f"User: {i+1}")
+
         # Create friendships
+
+        possible_friendships = []  
+
+            # Create a list with all possible friendship combinations
+        for user_id in self.users:
+            for friend_id in range(user_id + 1, self.last_id + 1):
+                possible_friendships.append((user_id, friend_id))
+
+            # shuffle the list
+        random.shuffle(possible_friendships)
+            # print(possible_friendships)
+            # then grab the first N elements from the list
+            # Number of times to call add_friendships
+        total_friendships = avg_friendships * num_users // 2
+         # print(f"Friendships to create: {total_friendships}\n")
+        for i in range(total_friendships):
+            friendship = possible_friendships[i]
+            self.add_friendship(friendship[0], friendship[1]) 
 
     def get_all_social_paths(self, user_id):
         """
