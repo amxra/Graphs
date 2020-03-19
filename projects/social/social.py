@@ -124,6 +124,8 @@ class SocialGraph:
                     copy = path.copy()
                     copy.append(neighbor)
                     q.enqueue(copy)
+                    
+                return visited
 
 
 if __name__ == '__main__':
